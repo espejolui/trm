@@ -1,0 +1,4 @@
+<h2>{{ titlePage }} {{ getDateFormatted() }} </h2>
+@if (dolarData){
+<p>1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2' }}</span></p>
+}
