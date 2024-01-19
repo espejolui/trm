@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'; // Usado para formatear valores
-import { colDate } from '../../service/date.service';
+import { DateService } from '../../service/date.service';
+
 
 @Component({
   selector: 'getDolar',
@@ -17,15 +18,18 @@ export class GetDolarComponent implements OnInit {
   public titlePage: string;
   public dolarData!: { value: number, currency: string };
   public dolarConverter: number;
+  public showResult: boolean;
 
   constructor(private http: HttpClient) {
     this.titlePage = "La TRM de hoy",
-    this.dolarData = { value: 0, currency: '' },
-    this.dolarConverter = 0;
+      this.dolarData = { value: 0, currency: '' },
+      this.dolarConverter = 0,
+      this.showResult = false;
   }
 
   // Obteniendo el servicio del formato de la fecha
-  getDateFormatted = () => colDate();
+  getDateFormatted = () => DateService();
+
 
   // Obteniendo datos con HttpClient del banco de la república
   getDolar = () => {
@@ -44,7 +48,7 @@ export class GetDolarComponent implements OnInit {
         }
       },
       error: (error: string) => {
-        console.log("Error al obtener los datos", error);
+        alert(error);
       },
       complete: () => {
         console.log("Función finalizada");
@@ -52,12 +56,11 @@ export class GetDolarComponent implements OnInit {
     });
   };
 
-  calcular = () => {
-    const inputValue: any = document.getElementById("inputValue")
-    const valorInput = inputValue.value
-
-    const resultado = valorInput * this.dolarData.value
-    console.log(resultado)
+  converter = () => {
+    const inputDolar: any = document.getElementById("inputDolar")
+    const valorInput = inputDolar.value
+    const result = valorInput * this.dolarData.value
+    return result
   }
 
   // Con el fin de cargar la función una vez se cargue el componente
