@@ -1,7 +1,7 @@
 :root {
   color-scheme: dark light;
-  --font: "Saira Variable', sans-serif";
-  --gay: #ccc
+  --font: 'Saira Variable', sans-serif;
+  --gray: #ccc
 }
 
 * {
@@ -9,18 +9,17 @@
   padding: 0;
 }
 
-body {
-  font-family: "Saira Variable', sans-serif";
+.body {
+  font-family: var(--font);
 
   main {
     height: 100dvh;
     padding: 1rem;
-    background-color: var(--gray);
 
     .title {
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600s;
+      font-size: 2rem;
+      font-weight: 200s;
     }
 
     .container {

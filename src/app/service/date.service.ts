@@ -1,11 +1,6 @@
 export const colDate = () => {
-  const date = new Date();
-  const options: Intl.DateTimeFormatOptions = {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  };
-  const dateFormat = new Intl.DateTimeFormat("es-CO", options).format(date);
+  const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' } as Intl.DateTimeFormatOptions;
+  const currentDate = new Date().toLocaleDateString('es-CO', { ...options, timeZone: 'America/Bogota' });
 
-  return dateFormat;
+  return currentDate;
 };

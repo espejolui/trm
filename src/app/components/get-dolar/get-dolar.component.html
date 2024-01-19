@@ -4,4 +4,9 @@
   <p>1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2' }}</span></p>
   }
 
+  <form>
+    <input type="number" [(ngModel)]="dolarConverter" id="inputValue" name="dolarConverter">
+    <button (click)="calcular()">Calcular</button>
+  </form>
+
 </section>
