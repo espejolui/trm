@@ -1,0 +1,22 @@
+<section class="card">
+  <h2>{{ titlePage }} {{ getDateFormatted() }} </h2>
+
+  @if (dolarData){
+  <p class="dolar">1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2' }}</span>
+  </p>
+  }
+
+  <article>
+    <h3>Calculador de tasa de cambio</h3>
+    <form>
+      <input type="number" [(ngModel)]="dolarConverter" id="inputDolar" name="dolarConverter">
+      <span>Dólares estadounidenses</span>
+    </form>
+  
+    @if (converter() > 0) {
+    <p>Son: {{ converter() | number: '1.2-2'}} Pesos Colombianos</p>
+    }
+
+  </article>  
+
+</section>

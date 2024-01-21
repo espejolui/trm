@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'; // Usado para formatear valores
-import { DateService } from '../../service/date.service';
+import { DateService } from '../service/date.service';
 
 
 @Component({
