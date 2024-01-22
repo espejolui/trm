@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Saira Vietnamese';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./files/saira-vietnamese-wght-normal.woff2) format('woff2');
+}
+
 :root {
   color-scheme: dark light;
   --font: 'Saira Variable', sans-serif;
