@@ -17,14 +17,15 @@ export class GetDolarComponent implements OnInit {
 
   public titlePage: string;
   public dolarData!: { value: number, currency: string };
-  public dolarConverter: number;
-  public showResult: boolean;
+  public dolarInput: number;
+  public pesoInput: number;
+
 
   constructor(private http: HttpClient) {
     this.titlePage = "La TRM de hoy",
       this.dolarData = { value: 0, currency: '' },
-      this.dolarConverter = 0,
-      this.showResult = false;
+      this.dolarInput = 0,
+      this.pesoInput = 0
   }
 
   // Obteniendo el servicio del formato de la fecha
@@ -56,10 +57,17 @@ export class GetDolarComponent implements OnInit {
     });
   };
 
-  converter = () => {
+  DolarPeso = () => {
     const inputDolar: any = document.getElementById("inputDolar")
     const valorInput = inputDolar.value
     const result = valorInput * this.dolarData.value
+    return result
+  }
+
+  pesoDolar = () => {
+    const inputPeso: any = document.getElementById("inputPeso")
+    const valorInput = inputPeso.value
+    const result = (valorInput / this.dolarData.value)
     return result
   }
 
