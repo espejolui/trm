@@ -1,5 +1,5 @@
 .dolar {
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem 0;
 }
 
 #dolarValue {
@@ -64,5 +64,9 @@ div {
 
   div {
     width: 100%;
+
+    p {
+      margin-bottom: 1rem;
+    }
   }
 }

@@ -2,7 +2,8 @@
   <h2 class="subtitle">{{ titlePage }} {{ getDateFormatted() }} </h2>
 
   @if (dolarData){
-  <p class="dolar">1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2' }}</span>
+  <p class="dolar">1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2'
+      }}</span>
   </p>
   }
 
