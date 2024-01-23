@@ -57,16 +57,12 @@ export class GetDolarComponent implements OnInit {
   };
 
   DolarPeso = () => {
-    const inputDolar: any = document.getElementById("inputDolar")
-    const valorInput = inputDolar.value
-    const result = valorInput * this.dolarData.value
+    const result = this.dolarInput * this.dolarData.value
     return result
   }
 
   pesoDolar = () => {
-    const inputPeso: any = document.getElementById("inputPeso")
-    const valorInput = inputPeso.value
-    const result = (valorInput / this.dolarData.value)
+    const result = this.pesoInput / this.dolarData.value
     return result
   }
 
