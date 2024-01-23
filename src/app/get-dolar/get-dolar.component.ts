@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'; // Usado para formatear valores
 import { DateService } from '../service/date.service';
 
-
 @Component({
   selector: 'getDolar',
   standalone: true,
@@ -22,7 +21,7 @@ export class GetDolarComponent implements OnInit {
 
 
   constructor(private http: HttpClient) {
-    this.titlePage = "La TRM de hoy",
+    this.titlePage = "Para hoy",
       this.dolarData = { value: 0, currency: '' },
       this.dolarInput = 0,
       this.pesoInput = 0
