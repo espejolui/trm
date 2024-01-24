@@ -26,6 +26,8 @@ form {
     border: none;
     border-right: 1px solid var(--myGray);
     border-radius: .5rem 0 0 .5rem;
+    color: var(--myBlack);
+    background-color: var(--myGray);
     outline: none;
   }
 }
