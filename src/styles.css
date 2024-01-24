@@ -28,7 +28,6 @@ body {
     height: 100dvh;
 
     .title {
-      margin: 2rem auto;
       text-align: center;
       text-transform: uppercase;
       font-size: 2rem;
