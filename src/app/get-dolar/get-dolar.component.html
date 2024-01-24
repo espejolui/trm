@@ -7,25 +7,25 @@
   </p>
   }
 
-  <h3 class="subtitle">Calculador de tasa de cambio</h3>
+  <h3 class="subtitle">Calculadora tasa de cambio</h3>
 
   <article>
     <form>
       <input inputmode="numeric" [(ngModel)]="dolarInput" id="inputDolar" name="dolarConverter" required>
+      
     </form>
 
     <div>
       <p><strong>USD</strong></p>
-
-      @if (DolarPeso() > 0) {
-      <p>= COP. {{DolarPeso() | number: '1.2-2'}}</p>
+      @if (dolarPeso() > 0) {
+      <p>= COP. {{dolarPeso() | number: '1.2-2'}}</p>
       }
     </div>
   </article>
 
   <article>
     <form>
-      <input inputmode="numeric" [(ngModel)]="pesoInput" id="inputPeso" name="dolarConverter" required>
+      <input inputmode="numeric" [(ngModel)]="pesoInput" id="inputPeso" name="pesoConverter" required>
     </form>
 
     <div>

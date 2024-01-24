@@ -14,29 +14,24 @@ import { DateService } from '../service/date.service';
 })
 export class GetDolarComponent implements OnInit {
 
-  public titlePage: string;
+  public titlePage: string = "Para hoy";
   public dolarData!: { value: number, currency: string };
-  public dolarInput: number;
-  public pesoInput: number;
-
+  public dolarInput: number = 1;
+  public pesoInput: number = 0;
 
   constructor(private http: HttpClient) {
-    this.titlePage = "Para hoy",
-      this.dolarData = { value: 0, currency: '' },
-      this.dolarInput = 0,
-      this.pesoInput = 0
+    this.dolarData = { value: 0, currency: '' }
   }
 
   // Obteniendo el servicio del formato de la fecha
   getDateFormatted = () => DateService();
 
-
   // Obteniendo datos con HttpClient del banco de la república
   getDolar = () => {
     this.http.get("https://www.datos.gov.co/resource/32sa-8pi3.json").subscribe({
       next: (data: any) => {
-        const currentDay = data[1]; // 18
-        const nextDay = data[0]; // 19
+        const currentDay = data[1];
+        const nextDay = data[0];
 
         const currentDate = new Date().toLocaleDateString("es-CO", { timeZone: "America/Bogota" });
         const apiDate = new Date(nextDay.vigenciahasta).toLocaleDateString("es-CO", { timeZone: "America/Bogota" });
@@ -49,14 +44,11 @@ export class GetDolarComponent implements OnInit {
       },
       error: (error: string) => {
         alert(error);
-      },
-      complete: () => {
-        console.log("Función finalizada");
       }
     });
   };
 
-  DolarPeso = () => {
+  dolarPeso = () => {
     const result = this.dolarInput * this.dolarData.value
     return result
   }
