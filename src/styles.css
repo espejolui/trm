@@ -10,8 +10,9 @@
 
 :root {
   color-scheme: dark light;
-  --myGray: #eaeaea;
   --font: 'Inter Variable';
+  --black: '#484848';
+  --myGray: #eaeaea;
 }
 
 * {
@@ -21,8 +22,7 @@
 
 body {
   font-family: var(--font);
-  color: var(--myGray);
-  background-image: linear-gradient(288deg, rgba(0, 85, 255, 1) 1%, rgba(4, 56, 115, 1) 96.1%);
+  color: var(--black);
 
   main {
     height: 100dvh;
@@ -40,7 +40,7 @@ body {
     }
 
     .card {
-      width: 90%;
+      width: 50%;
       display: grid;
       min-height: 250px;
       margin: 2rem auto;

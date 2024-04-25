@@ -6,13 +6,13 @@ import { DecimalPipe } from '@angular/common'; // Usado para formatear valores
 import { DateService } from '../service/date.service';
 
 @Component({
-  selector: 'getDolar',
+  selector: 'rate',
   standalone: true,
   imports: [HttpClientModule, DecimalPipe, FormsModule],
-  templateUrl: './get-dolar.component.html',
-  styleUrl: './get-dolar.component.css'
+  templateUrl: './rate.component.html',
+  styleUrl: './rate.component.css'
 })
-export class GetDolarComponent implements OnInit {
+export class RateComponent implements OnInit {
 
   public titlePage: string = "Para hoy";
   public dolarData!: { value: number, currency: string };
