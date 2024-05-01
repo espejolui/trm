@@ -4,19 +4,22 @@ header {
   gap: 1rem;
   margin: 2rem auto;
   align-items: center;
+  justify-content: center;
 
   img {
     width: 40px;
   }
 }
 section {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  background-color: aqua;
 }
 
-@media (max-width: 768px) {
-  header {
-    justify-content: center;
+@media (width < 960px ){
+  section {
+    display: grid;
+    background-color: orange;
   }
 }
