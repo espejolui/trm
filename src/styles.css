@@ -14,9 +14,11 @@
 :root {
   color-scheme: dark light;
   --font: "Inter Variable";
-  --black: "#484848";
+  --black: #484848;
   --gray: #eaeaea;
-}
+  --greenLight: #85bb65;
+  --greenDark: #077426;
+  }
 
 * {
   margin: 0;
@@ -48,6 +50,7 @@ main {
     padding: 10px 20px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(204, 204, 204, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(204, 204, 204, 0.19);
   }
 }
