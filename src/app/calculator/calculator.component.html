@@ -1,5 +1,5 @@
 <article class="card">
-  <h3 class="subtitle">Calculadora tasa de cambio</h3>
+  <h3 class="subtitle">Calculadora</h3>
   <form>
     <input
       inputmode="numeric"
@@ -11,9 +11,9 @@
   </form>
 
   <div>
-    <p><strong>USD</strong></p>
-    @if (dolarPeso() > 0) {
-    <p>= COP. {{ dolarPeso() | number : "1.2-2" }}</p>
-    }
+    <p>
+      @if (dolarPeso() > 0) { COP.
+      {{ dolarPeso() | number : "1.2-2" }} }
+    </p>
   </div>
 </article>
