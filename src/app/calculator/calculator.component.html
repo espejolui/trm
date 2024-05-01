@@ -8,12 +8,9 @@
       name="dolarConverter"
       required
     />
-  </form>
-
-  <div>
-    <p>
+    <span>
       @if (dolarPeso() > 0) { COP.
       {{ dolarPeso() | number : "1.2-2" }} }
-    </p>
-  </div>
+    </span>
+  </form>
 </article>
