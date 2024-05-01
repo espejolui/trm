@@ -11,7 +11,7 @@ import { GetDolarDataService } from '../service/get-dolar.service';
   styleUrl: './rate.component.css',
 })
 export class RateComponent implements OnInit {
-  public titlePage: string = 'Para hoy';
+  public titlePage: string = 'Dolar hoy';
   public dolarValue!: string;
 
   constructor(private getDolarDataService: GetDolarDataService) {}
