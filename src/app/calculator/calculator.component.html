@@ -1,1 +1,19 @@
-<p>calculator works!</p>
+<article class="card">
+  <h3 class="subtitle">Calculadora tasa de cambio</h3>
+  <form>
+    <input
+      inputmode="numeric"
+      [(ngModel)]="dolarInput"
+      id="inputDolar"
+      name="dolarConverter"
+      required
+    />
+  </form>
+
+  <div>
+    <p><strong>USD</strong></p>
+    @if (dolarPeso() > 0) {
+    <p>= COP. {{ dolarPeso() | number : "1.2-2" }}</p>
+    }
+  </div>
+</article>
