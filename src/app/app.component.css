@@ -4,15 +4,19 @@ header {
   gap: 1rem;
   margin: 2rem auto;
   align-items: center;
-  
+
   img {
     width: 40px;
   }
+}
+section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 @media (max-width: 768px) {
   header {
     justify-content: center;
-  
   }
 }
