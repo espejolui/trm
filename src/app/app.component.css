@@ -13,13 +13,7 @@ header {
 section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-items: center;
+  align-items: center;
+  gap: 2rem;
   background-color: aqua;
-}
-
-@media (width < 960px ){
-  section {
-    display: grid;
-    background-color: orange;
-  }
 }

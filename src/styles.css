@@ -26,20 +26,24 @@
 body {
   font-family: var(--font);
   color: var(--black);
+}
 
-  main {
-    height: 100dvh;
+main {
+  height: 100dvh;
 
-    .title {
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 2rem;
-      font-weight: 600;
-    }
+  .title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 600;
+  }
 
-    .subtitle {
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .card {
+    text-align: center;
+    background-color: orangered;
   }
 }
