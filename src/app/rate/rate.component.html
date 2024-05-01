@@ -1,39 +1,10 @@
 <section class="card">
-  <h2 class="subtitle">{{ titlePage }} {{ getDateFormatted() }} </h2>
+  <h2 class="subtitle">{{ titlePage }} {{ getDateFormatted() }}</h2>
 
-  @if (dolarData){
-  <p class="dolar">1 USD = {{ dolarData.currency }} <span id="dolarValue">{{ dolarData.value | number: '1.2-2'
-      }}</span>
+ @if (dolarValue){
+  <p class="dolar">
+    1 USD =
+    <span id="dolarValue">{{ dolarValue | number : "1.2-2" }}</span>
   </p>
-  }
-
-  <h3 class="subtitle">Calculadora tasa de cambio</h3>
-
-  <article>
-    <form>
-      <input inputmode="numeric" [(ngModel)]="dolarInput" id="inputDolar" name="dolarConverter" required>
-      
-    </form>
-
-    <div>
-      <p><strong>USD</strong></p>
-      @if (dolarPeso() > 0) {
-      <p>= COP. {{dolarPeso() | number: '1.2-2'}}</p>
-      }
-    </div>
-  </article>
-
-  <article>
-    <form>
-      <input inputmode="numeric" [(ngModel)]="pesoInput" id="inputPeso" name="pesoConverter" required>
-    </form>
-
-    <div>
-      <p><strong>COP</strong></p>
-      @if (pesoDolar() > 0) {
-      <p>= USD {{pesoDolar() | number: '1.2-2'}}</p>
-      }
-    </div>
-  </article>
-
+  } 
 </section>

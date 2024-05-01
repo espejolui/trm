@@ -1,65 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'; // Usado para formatear valores
 import { DateService } from '../service/date.service';
+import { GetDolarDataService } from '../service/get-dolar.service';
 
 @Component({
   selector: 'rate',
   standalone: true,
-  imports: [HttpClientModule, DecimalPipe, FormsModule],
+  imports: [DecimalPipe],
   templateUrl: './rate.component.html',
-  styleUrl: './rate.component.css'
+  styleUrl: './rate.component.css',
 })
 export class RateComponent implements OnInit {
+  public titlePage: string = 'Para hoy';
+  public dolarValue!: string;
 
-  public titlePage: string = "Para hoy";
-  public dolarData!: { value: number, currency: string };
-  public dolarInput: number = 1;
-  public pesoInput: number = 0;
+  constructor(private getDolarDataService: GetDolarDataService) {}
 
-  constructor(private http: HttpClient) {
-    this.dolarData = { value: 0, currency: '' }
-  }
-
-  // Obteniendo el servicio del formato de la fecha
+  // 1. Obteniendo el servicio del formato de la fecha para el titulo
   getDateFormatted = () => DateService();
 
-  // Obteniendo datos con HttpClient del banco de la república
-  getDolar = () => {
-    this.http.get("https://www.datos.gov.co/resource/32sa-8pi3.json").subscribe({
+  // 2. El valor del dolar según el día calendario
+  rate() {
+    this.getDolarDataService.getDolarData().subscribe({
       next: (data: any) => {
-        const currentDay = data[1];
-        const nextDay = data[0];
+        const nextDay = new Date(data[0].vigenciadesde).toLocaleDateString(
+          'es-CO',
+          { timeZone: 'America/Bogota' }
+        );
 
-        const currentDate = new Date().toLocaleDateString("es-CO", { timeZone: "America/Bogota" });
-        const apiDate = new Date(nextDay.vigenciahasta).toLocaleDateString("es-CO", { timeZone: "America/Bogota" });
+        // 3. Esto representa el día actual en Colombia formateado
+        const currentDate = new Date().toLocaleDateString('es-CO', {
+          timeZone: 'America/Bogota',
+        });
 
-        if (currentDate === apiDate) {
-          this.dolarData = { value: currentDay.valor, currency: currentDay.unidad };
+        // 4. Si la fecha actual es igual al siguiente día, renderiza el indice [0], pero si no se cumple renderiza el indice [1]
+        if (currentDate === nextDay) {
+          this.dolarValue = data[1].valor;
         } else {
-          this.dolarData = { value: nextDay.valor, currency: nextDay.unidad };
+          this.dolarValue = data[0].valor;
         }
       },
-      error: (error: string) => {
-        alert(error);
-      }
+      error(err: string) {
+        alert(err);
+      },
     });
-  };
-
-  dolarPeso = () => {
-    const result = this.dolarInput * this.dolarData.value
-    return result
   }
 
-  pesoDolar = () => {
-    const result = this.pesoInput / this.dolarData.value
-    return result
-  }
-
-  // Con el fin de cargar la función una vez se cargue el componente
+  // 5. Con el fin de cargar la función una vez se cargue el componente
   ngOnInit() {
-    this.getDolar();
+    this.rate();
   }
 }
