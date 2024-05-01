@@ -6,8 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GetDolarDataService {
-  dolarData: any;
-
   constructor(private http: HttpClient) {}
 
   getDolarData(): Observable<any> {
