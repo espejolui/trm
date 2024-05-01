@@ -40,9 +40,9 @@ body {
     }
 
     .card {
-      width: 50%;
+      width: 450px;
+      height: 120px;
       display: grid;
-      min-height: 250px;
       margin: 2rem auto;
       padding: 2rem 0;
       align-content: center;
