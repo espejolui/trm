@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { GetDolarDataService } from '../service/get-dolar.service';
 
-
 @Component({
-  selector: 'app-chart',
+  selector: 'chart',
   standalone: true,
   imports: [],
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.css',
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent {
   public chart!: Chart;
   public dolarData: any;
   public days: any;
@@ -21,14 +20,20 @@ export class ChartComponent implements OnInit {
       this.dolarData = data;
 
       const lastMonth = data.slice(1, 31);
+      lastMonth.sort(
+        (a: any, b: any) =>
+          new Date(a.vigenciahasta).getTime() -
+          new Date(b.vigenciahasta).getTime()
+      );
 
-      // Mapeando los valores del último mes
+      // Mapeando los valores del último mes en lugar de toda la data devuelta
       this.days = lastMonth.map((item: { vigenciahasta: string }) =>
         item.vigenciahasta.slice(0, 10)
       );
 
       this.value = lastMonth.map((item: { valor: string }) => item.valor);
 
+      // Invoco la creación del grafico para que sea rellenado con los datos
       this.createChart();
     });
   }
@@ -43,10 +48,10 @@ export class ChartComponent implements OnInit {
             label: 'Historico del dolar',
             data: this.value,
             borderColor: 'green', // Color de la línea
-            backgroundColor: 'rgba(0, 0, 255, 0.1)', // Color del área bajo la línea
+            backgroundColor: 'green', // Color del área bajo la línea
             pointBackgroundColor: 'blue', // Color de los puntos
             pointRadius: 1, // Tamaño de los puntos
-            borderWidth: 2,
+            borderWidth: 2, // Groso de la líena
           },
         ],
       },
@@ -60,6 +65,4 @@ export class ChartComponent implements OnInit {
       },
     });
   }
-
-  ngOnInit(): void {}
 }
