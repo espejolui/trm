@@ -11,27 +11,40 @@ import { GetDolarDataService } from '../service/get-dolar.service';
 })
 export class ChartComponent {
   public chart!: Chart;
-  public dolarData: any;
-  public days: any;
-  public value: any;
+  public dolarData!: [];
+  public date!: string[];
+  public dolarValue!: [];
 
   constructor(private getDolarDataService: GetDolarDataService) {
     this.getDolarDataService.getDolarData().subscribe((data) => {
       this.dolarData = data;
 
-      const lastMonth = data.slice(1, 31);
-      lastMonth.sort(
-        (a: any, b: any) =>
-          new Date(a.vigenciahasta).getTime() -
-          new Date(b.vigenciahasta).getTime()
-      );
+      // Sancando los valores solo del último mes y ordenandolos de izquierda a derecha del más antiguo al más reciente respectivamente.
+      const lastMonth = data
+        .slice(0, 30)
+        .sort(
+          (a: any, b: any) =>
+            new Date(a.vigenciadesde).getTime() -
+            new Date(b.vigenciadesde).getTime()
+        );
 
-      // Mapeando los valores del último mes en lugar de toda la data devuelta
-      this.days = lastMonth.map((item: { vigenciahasta: string }) =>
-        item.vigenciahasta.slice(0, 10)
-      );
+      // Mapeando los días de lastMonth
+      this.date = lastMonth.map((date: { vigenciadesde: string }) => {
+        const dateFormat = new Date(date.vigenciadesde).toLocaleDateString(
+          'es-CO',
+          {
+            timeZone: 'America/Bogota',
+            month: 'short',
+            day: 'numeric',
+          }
+        );
 
-      this.value = lastMonth.map((item: { valor: string }) => item.valor);
+        return `${dateFormat}`;
+      });
+
+      this.dolarValue = lastMonth.map(
+        (value: { valor: string }) => value.valor
+      );
 
       // Invoco la creación del grafico para que sea rellenado con los datos
       this.createChart();
@@ -39,17 +52,22 @@ export class ChartComponent {
   }
 
   createChart() {
+    // Obteniendo los estilos computados en el root
+    const styles = window.getComputedStyle(document.documentElement);
+    const greenLight = styles.getPropertyValue('--greenLight');
+    const greenDark = styles.getPropertyValue('--greenDark');
+
     this.chart = new Chart('trmChart', {
       type: 'line',
       data: {
-        labels: this.days,
+        labels: this.date,
         datasets: [
           {
-            label: 'Historico del dolar',
-            data: this.value,
-            borderColor: 'green', // Color de la línea
-            backgroundColor: 'green', // Color del área bajo la línea
-            pointBackgroundColor: 'blue', // Color de los puntos
+            label: 'Historico último mes',
+            data: this.dolarValue,
+            borderColor: greenLight, // Color de la línea
+            backgroundColor: greenLight, // Color del área bajo la línea
+            pointBackgroundColor: greenDark, // Color de los puntos
             pointRadius: 1, // Tamaño de los puntos
             borderWidth: 2, // Groso de la líena
           },
